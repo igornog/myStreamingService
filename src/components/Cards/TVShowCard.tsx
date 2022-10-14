@@ -55,6 +55,9 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
   const storeShowInfo = () => {
     dispatch(setShowID(props.TVShowDetails.id))
     dispatch(setShowName(props.TVShowDetails.name))
+    // storing episode ID in case of page reload
+    localStorage.setItem('showID', props.TVShowDetails.id)
+    localStorage.setItem('showName', props.TVShowDetails.name)
   }
 
   return (

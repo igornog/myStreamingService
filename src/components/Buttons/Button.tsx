@@ -14,7 +14,6 @@ const ButtonStyled = styled.div`
     padding: 0.5rem 2rem;
 
     @media screen and (max-width: 769px) {
-      margin: 4rem 0 2rem;
       align-self: center;
     }
 `

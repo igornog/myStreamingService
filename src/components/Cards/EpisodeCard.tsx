@@ -29,7 +29,6 @@ const CardWrapper = styled.div`
     }
   }
 `
-
 const Card = styled.div`
   flex-direction: column;
   p {
@@ -55,10 +54,16 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
   const { episodeDetails } = props;
   const dispatch = useDispatch()
 
+  const storingEpisodeId = () => {
+    dispatch(setEpisodeID(episodeDetails.id))
+    // storing episode ID in case of page reload
+    localStorage.setItem('episodeId', episodeDetails.id)
+  }
+
   return (
     <>
       <CardWrapper>
-        <Link to={episodeDetails.name} onClick={() => dispatch(setEpisodeID(episodeDetails.id))}>
+        <Link to={episodeDetails.name} onClick={() => storingEpisodeId()}>
           <Card>
             <p><span>EP.{episodeDetails.number} - </span>{episodeDetails.name}</p>
             <p>{episodeDetails.summary.split((/<|>/))[2]}</p>

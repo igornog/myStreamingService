@@ -14,7 +14,8 @@ export const getShows = () => {
 };
 
 export const getSeasons = (id: string) => {
-  let response = axios.get(`${baseUrl}/shows/${id}/seasons`, {
+  let idFound = id ? id : localStorage.getItem('showID')
+  let response = axios.get(`${baseUrl}/shows/${idFound}/seasons`, {
     headers: {
       Accept: `*/*`,
     },
@@ -25,7 +26,8 @@ export const getSeasons = (id: string) => {
 };
 
 export const getMainShowInfo = (id: string) => {
-  let response = axios.get(`${baseUrl}/shows/${id}`, {
+  let idFound = id ? id : localStorage.getItem('showID')
+  let response = axios.get(`${baseUrl}/shows/${idFound}`, {
     headers: {
       Accept: `*/*`,
     },
@@ -36,7 +38,8 @@ export const getMainShowInfo = (id: string) => {
 };
 
 export const getEpisodes = (id: string) => {
-  let response = axios.get(`${baseUrl}/shows/${id}/episodes`, {
+  let idFound = id ? id : localStorage.getItem('showID')
+  let response = axios.get(`${baseUrl}/shows/${idFound}/episodes`, {
     headers: {
       Accept: `*/*`,
     },
@@ -47,7 +50,8 @@ export const getEpisodes = (id: string) => {
 };
 
 export const getEpisodeMainInfo = (id: string) => {
-  let response = axios.get(`${baseUrl}/episodes/${id}`, {
+  let idFound = id ? id : localStorage.getItem('episodeId')
+  let response = axios.get(`${baseUrl}/episodes/${idFound}`, {
     headers: {
       Accept: `*/*`,
     },

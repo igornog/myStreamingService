@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/Buttons/Button';
 import Loader from '../components/Loader/Loader';
+import LazyLoad from 'react-lazyload';
 
 const Wrapper = styled.div`
   background-color: #02182B;
@@ -20,6 +21,10 @@ const Wrapper = styled.div`
     width: max-content;
     background-repeat: no-repeat;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
+    @media screen and (max-width: 769px) {
+      height: 20vh;
+    }
   }
 
   @media screen and (max-width: 769px) {
@@ -39,6 +44,9 @@ const Article = styled.article`
     div {
       width: 25%;
       justify-self: center;
+      @media screen and (max-width: 769px) {
+        width: 50%;
+      }
     }
 
     @media screen and (max-width: 769px) {
@@ -46,13 +54,14 @@ const Article = styled.article`
       align-self: center;
     }
   }
+  @media screen and (max-width: 769px) {
+    padding: 0;
+  }
 `
-
 const Title = styled.p`
   font-size: 2rem;
   font-weight: bold;
 `
-
 const Episodes = () => {
   const [showInfo, setShowInfo] = useState<GeneralInfoTypes>();
   const [isLoading, setIsLoading] = useState(true);
@@ -86,9 +95,11 @@ const Episodes = () => {
     <>
       {!isLoading ?
         <Wrapper>
-          <img src={showInfo?.image.original} alt={showInfo?.name} />
+          <LazyLoad height={200} offset={100} once>
+            <img src={showInfo?.image.original} alt={showInfo?.name} />
+          </LazyLoad>
           <Article>
-            <Link to={`/${showSelectedName}`} onClick={() => dispatch(setShowID(showSelectedId))}>
+            <Link to={`/${showSelectedName ? showSelectedName : localStorage.getItem('showName')}`} onClick={() => dispatch(setShowID(showSelectedId))}>
               <Button>Back to all episodes</Button>
             </Link>
             <Title>{showInfo?.name}</Title>
