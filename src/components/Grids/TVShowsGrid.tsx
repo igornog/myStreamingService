@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Card from '../Cards/TVShowCard';
-import LazyLoad from 'react-lazyload';
 
 const Grid = styled.div`
   background-color: #FFFFFC;
@@ -23,18 +22,16 @@ const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
 
   return (
     <Grid>
-      <LazyLoad height={200} offset={100} once>
-        <GridList>
-          {props.TVShows.map((TVShow: GeneralInfoTypes) => {
-            return (
-              <Card
-                key={TVShow.id}
-                TVShowDetails={TVShow}
-              ></Card>
-            )
-          })}
-        </GridList>
-      </LazyLoad>
+      <GridList>
+        {props.TVShows.map((TVShow: GeneralInfoTypes) => {
+          return (
+            <Card
+              key={TVShow.id}
+              TVShowDetails={TVShow}
+            ></Card>
+          )
+        })}
+      </GridList>
     </Grid>
   );
 }

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import {
   setShowID, setShowName,
 } from "../../store/reducers";
+import LazyLoad from 'react-lazy-load';
 
 interface PropsTypes {
   TVShowDetails: GeneralInfoTypes
@@ -64,8 +65,9 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
     <>
       <Card onClick={() => storeShowInfo()}>
         <Link to={props.TVShowDetails.name}>
-          <img
-            src={TVShowDetails.image.original} alt={props.TVShowDetails.name}></img>
+          <LazyLoad height={400} offset={300}>
+            <img src={TVShowDetails.image.original} alt={props.TVShowDetails.name}></img>
+          </LazyLoad>
         </Link>
       </Card>
     </>

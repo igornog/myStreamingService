@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/Buttons/Button';
 import Loader from '../components/Loader/Loader';
-import LazyLoad from 'react-lazyload';
+import LazyLoad from 'react-lazy-load';
 
 const Wrapper = styled.div`
   background-color: #02182B;
@@ -95,7 +95,7 @@ const Episodes = () => {
     <>
       {!isLoading ?
         <Wrapper>
-          <LazyLoad height={200} offset={100} once>
+          <LazyLoad height={300} offset={100}>
             <img src={showInfo?.image.original} alt={showInfo?.name} />
           </LazyLoad>
           <Article>

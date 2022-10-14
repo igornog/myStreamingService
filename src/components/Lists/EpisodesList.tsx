@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Card from '../Cards/EpisodeCard';
 import { getSeasons } from '../../api/services/tvmazeAPI';
 import Loader from '../Loader/Loader';
-import LazyLoad from 'react-lazyload';
 
 interface PropsTypes {
   episodes: any[];
@@ -70,18 +69,16 @@ const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
             }
             )}
           </select>
-          <LazyLoad height={200} offset={100} once>
-            <List>
-              {props?.episodes?.filter((episode: GeneralInfoTypes) => episode.season === seasonSelected).map((episode: GeneralInfoTypes) => {
-                return (
-                  <Card
-                    key={episode.id}
-                    episodeDetails={episode}
-                  ></Card>
-                )
-              })}
-            </List>
-          </LazyLoad>
+          <List>
+            {props?.episodes?.filter((episode: GeneralInfoTypes) => episode.season === seasonSelected).map((episode: GeneralInfoTypes) => {
+              return (
+                <Card
+                  key={episode.id}
+                  episodeDetails={episode}
+                ></Card>
+              )
+            })}
+          </List>
         </ListWrapper> :
         <Loader />}
     </>
