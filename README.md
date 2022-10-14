@@ -2,6 +2,17 @@
 
 <img width="1420" alt="Screen Shot 2022-10-14 at 01 53 11" src="https://user-images.githubusercontent.com/29484089/195737954-ca2abab5-4053-4c56-bd76-477cafeb7ace.png">
 
+# TV Show Page
+
+<img width="1414" alt="Screen Shot 2022-10-14 at 01 56 17" src="https://user-images.githubusercontent.com/29484089/195738149-3f9640d9-4865-44c4-b47c-8b3767bc1c7f.png">
+
+# Episode Details Page
+
+<img width="1420" alt="Screen Shot 2022-10-14 at 01 56 29" src="https://user-images.githubusercontent.com/29484089/195738196-c30591d0-c742-4528-a0fa-dd63334f9588.png">
+
+
+--
+
 
 # Getting Started with Create React App
 
