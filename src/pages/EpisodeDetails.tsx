@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/Buttons/Button';
 import Loader from '../components/Loader/Loader';
-import LazyLoad from 'react-lazy-load';
 
 const Wrapper = styled.div`
   background-color: #02182B;
@@ -23,7 +22,8 @@ const Wrapper = styled.div`
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     
     @media screen and (max-width: 769px) {
-      height: 20vh;
+      height: auto;
+      width: 75%;
     }
   }
 
@@ -95,9 +95,7 @@ const Episodes = () => {
     <>
       {!isLoading ?
         <Wrapper>
-          <LazyLoad height={300} offset={100}>
             <img src={showInfo?.image.original} alt={showInfo?.name} />
-          </LazyLoad>
           <Article>
             <Link to={`/${showSelectedName ? showSelectedName : localStorage.getItem('showName')}`} onClick={() => dispatch(setShowID(showSelectedId))}>
               <Button>Back to all episodes</Button>

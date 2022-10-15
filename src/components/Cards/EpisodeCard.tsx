@@ -26,6 +26,10 @@ const CardWrapper = styled.div`
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       color: black;
       text-decoration: none;
+
+      @media screen and (max-width: 769px) {
+        padding: 1rem;
+      }
     }
   }
 `
@@ -47,6 +51,11 @@ const Card = styled.div`
       -webkit-line-clamp: 2;
       display: -webkit-box;
       -webkit-box-orient: vertical;
+
+      @media screen and (max-width: 769px) {
+        margin: 1rem 0;
+        -webkit-line-clamp: 3;
+      }
     }
   }
 `
