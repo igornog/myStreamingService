@@ -17,10 +17,9 @@ const Card = styled.div`
   cursor: pointer;
 
   img {
-    width: 100%;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     max-width: fit-content;
-    height: 20rem;
+    height: -webkit-fill-available;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     border-radius: 16px;
     transition: all .5s ease;
 
@@ -69,7 +68,7 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
     <>
       <Card onClick={() => storeShowInfo()}>
         <Link to={props.TVShowDetails.name}>
-          <LazyLoad height={400} offset={300}>
+          <LazyLoad height={200} offset={300}>
             <img src={TVShowDetails.image.original} alt={props.TVShowDetails.name}></img>
           </LazyLoad>
         </Link>

@@ -8,7 +8,7 @@ const GridList = styled.ul`
   display: grid;
   padding: 2rem 5rem 5rem;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
   @media screen and (max-width: 769px) {
     padding: 1rem;

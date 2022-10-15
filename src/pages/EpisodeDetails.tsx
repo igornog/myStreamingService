@@ -16,8 +16,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   img {
-    height: 40vh;
-    width: max-content;
+    height: auto;
+    max-height: 30vh;
+    width: auto;
     background-repeat: no-repeat;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     
@@ -42,7 +43,8 @@ const Article = styled.article`
     text-decoration: none;
 
     div {
-      width: 25%;
+      width: auto;
+      margin: 2rem 0;
       justify-self: center;
       @media screen and (max-width: 769px) {
         width: 50%;
@@ -97,11 +99,11 @@ const Episodes = () => {
         <Wrapper>
             <img src={showInfo?.image.original} alt={showInfo?.name} />
           <Article>
+            <Title>{showInfo?.name}</Title>
+            <p>{showInfo?.summary.split((/<|>/))[2]}</p>
             <Link to={`/${showSelectedName ? showSelectedName : localStorage.getItem('showName')}`} onClick={() => dispatch(setShowID(showSelectedId))}>
               <Button>Back to all episodes</Button>
             </Link>
-            <Title>{showInfo?.name}</Title>
-            <p>{showInfo?.summary.split((/<|>/))[2]}</p>
           </Article>
         </Wrapper>
         : <Loader />}
