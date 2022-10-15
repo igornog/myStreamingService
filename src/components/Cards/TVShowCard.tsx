@@ -28,6 +28,10 @@ const Card = styled.div`
       transform: translateY(-10px);
       transition: all .3s ease;
     }
+
+    @media screen and (max-width: 769px) {
+      width: auto;
+    }
   }
 
   p {

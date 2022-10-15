@@ -47,7 +47,7 @@ const TVShow = () => {
     <>
       <Header>
         <Title>
-          REACT CHALLENGE - MOONGYS
+          REACT CHALLENGE - MOONGY
         </Title>
       </Header>
       {!isLoading ?
