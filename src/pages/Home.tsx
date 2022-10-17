@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import styled from 'styled-components'
 import { getShows } from '../api/services/tvmazeAPI';
 import Grid from '../components/Grids/TVShowsGrid';
@@ -30,12 +30,12 @@ const Title = styled.p`
 
 const TVShow = () => {
   const [TVshows, setTVshows] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const loadTVShows = () => {
     getShows().then((res) => {
       setTVshows(res.data as any)
-      setIsLoading(false)
+      // setIsLoading(false)
     })
   };
 
@@ -50,9 +50,11 @@ const TVShow = () => {
           REACT CHALLENGE - MOONGY
         </Title>
       </Header>
-      {!isLoading ?
+      <Suspense fallback={<Loader />}>
         <Grid TVShows={TVshows}></Grid>
-        : <Loader/>}
+      </Suspense>
+      {/* {!isLoading ?
+        : <Loader/>} */}
     </>
   );
 }
