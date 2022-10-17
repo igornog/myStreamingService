@@ -69,7 +69,7 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
       <Card onClick={() => storeShowInfo()}>
         <Link to={props.TVShowDetails.name}>
           <LazyLoad height={200} offset={300}>
-            <img src={TVShowDetails.image.original} alt={props.TVShowDetails.name}></img>
+            <img src={TVShowDetails.image.medium} alt={props.TVShowDetails.name}></img>
           </LazyLoad>
         </Link>
       </Card>
