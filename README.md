@@ -12,6 +12,9 @@
 
 <img width="1420" alt="Screen Shot 2022-10-14 at 01 56 29" src="https://user-images.githubusercontent.com/29484089/195738196-c30591d0-c742-4528-a0fa-dd63334f9588.png">
 
+# PageSpeed Score
+
+<img width="1394" alt="Screen Shot 2022-10-21 at 15 41 09" src="https://user-images.githubusercontent.com/29484089/197222885-b41fae9b-d2cb-4a70-8de2-f001d8d28616.png">
 
 --
 
