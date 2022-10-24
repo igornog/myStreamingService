@@ -44,7 +44,7 @@ const Article: React.FC<Props> = (props: Props) => {
   return (
     <Wrapper>
       <Title>{props.name}</Title>
-      <p>{props.summary?.split((/<|>/))[2]}</p>
+      <p>{props.summary ? props.summary?.split((/<|>/))[2] : 'No summary.'}</p>
       <Link to={`/${showSelectedName ? showSelectedName : localStorage.getItem('showName')}`} onClick={() => dispatch(setShowID(showSelectedId))}>
         <Button>Back to all episodes</Button>
       </Link>

@@ -75,7 +75,7 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
         <Link to={episodeDetails.name} onClick={() => storingEpisodeId()}>
           <Card>
             <p><span>EP.{episodeDetails.number} - </span>{episodeDetails.name}</p>
-            <p>{episodeDetails?.summary?.split((/<|>/))[2]}</p>
+            <p>{episodeDetails?.summary ? episodeDetails?.summary?.split((/<|>/))[2] : 'No summary.'}</p>
           </Card>
         </Link>
       </CardWrapper>
