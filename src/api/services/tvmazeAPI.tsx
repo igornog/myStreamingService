@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-let baseUrl = 'https://api.tvmaze.com'
+const baseUrl = 'https://api.tvmaze.com'
 
 export const getShows = () => {
-  let response = axios.get(`${baseUrl}/shows`, {
+  const response = axios.get(`${baseUrl}/shows`, {
     headers: {
       Accept: `*/*`,
     },
@@ -14,8 +14,8 @@ export const getShows = () => {
 };
 
 export const getSeasons = (id: string) => {
-  let idFound = id ? id : localStorage.getItem('showID')
-  let response = axios.get(`${baseUrl}/shows/${idFound}/seasons`, {
+  const idFound = id ? id : localStorage.getItem('showID')
+  const response = axios.get(`${baseUrl}/shows/${idFound}/seasons`, {
     headers: {
       Accept: `*/*`,
     },
@@ -26,8 +26,8 @@ export const getSeasons = (id: string) => {
 };
 
 export const getMainShowInfo = (id: string) => {
-  let idFound = id ? id : localStorage.getItem('showID')
-  let response = axios.get(`${baseUrl}/shows/${idFound}`, {
+  const idFound = id ? id : localStorage.getItem('showID')
+  const response = axios.get(`${baseUrl}/shows/${idFound}`, {
     headers: {
       Accept: `*/*`,
     },
@@ -38,8 +38,8 @@ export const getMainShowInfo = (id: string) => {
 };
 
 export const getEpisodes = (id: string) => {
-  let idFound = id ? id : localStorage.getItem('showID')
-  let response = axios.get(`${baseUrl}/shows/${idFound}/episodes`, {
+  const idFound = id ? id : localStorage.getItem('showID')
+  const response = axios.get(`${baseUrl}/shows/${idFound}/episodes`, {
     headers: {
       Accept: `*/*`,
     },
@@ -50,8 +50,8 @@ export const getEpisodes = (id: string) => {
 };
 
 export const getEpisodeMainInfo = (id: string) => {
-  let idFound = id ? id : localStorage.getItem('episodeId')
-  let response = axios.get(`${baseUrl}/episodes/${idFound}`, {
+  const idFound = id ? id : localStorage.getItem('episodeId')
+  const response = axios.get(`${baseUrl}/episodes/${idFound}`, {
     headers: {
       Accept: `*/*`,
     },
