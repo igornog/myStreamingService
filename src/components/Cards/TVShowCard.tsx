@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import {
   setShowID, setShowName,
 } from "../../store/reducers";
-import LazyLoad from 'react-lazy-load';
 
 interface PropsTypes {
   TVShowDetails: GeneralInfoTypes
@@ -15,10 +14,11 @@ const Card = styled.div`
   margin: 1rem;
   border-radius: 16px;
   cursor: pointer;
+  text-align: center;
 
   img {
+    width: -webkit-fill-available;
     max-width: fit-content;
-    height: -webkit-fill-available;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     border-radius: 16px;
     transition: all .5s ease;
@@ -26,10 +26,6 @@ const Card = styled.div`
     &:hover {
       transform: translateY(-10px);
       transition: all .3s ease;
-    }
-
-    @media screen and (max-width: 769px) {
-      width: auto;
     }
   }
 
@@ -68,9 +64,7 @@ const EpisodeCard: React.FC<PropsTypes> = (props: PropsTypes) => {
     <>
       <Card onClick={() => storeShowInfo()}>
         <Link to={props.TVShowDetails.name}>
-          <LazyLoad height={200} offset={300}>
-            <img src={TVShowDetails.image.medium} alt={props.TVShowDetails.name}></img>
-          </LazyLoad>
+          <img src={TVShowDetails.image.medium} alt={props.TVShowDetails.name}></img>
         </Link>
       </Card>
     </>

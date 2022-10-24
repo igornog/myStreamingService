@@ -37,12 +37,12 @@ const Wrapper = styled.div`
       margin: 2rem 0;
       justify-self: center;
       @media screen and (max-width: 769px) {
-        width: 50%;
+        margin: 0;
       }
     }
 
     @media screen and (max-width: 769px) {
-      margin: 4rem 0 2rem;
+      margin: 2rem;
       align-self: center;
     }
   }
