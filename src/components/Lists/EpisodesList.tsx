@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components'
 import Card from '../Cards/EpisodeCard';
 import { getSeasons } from '../../api/services/tvmazeAPI';
@@ -46,7 +46,7 @@ const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
   };
 
   const loadSeasons = () => {
-    getSeasons(props.seasonId).then((res) => {
+    getSeasons(props.seasonId).then((res: { data: SetStateAction<never[]>; }) => {
       setSeasons(res.data)
       setIsLoading(false)
     })

@@ -28,14 +28,12 @@ const Title = styled.p`
   margin-bottom: 0;
 `
 
-const TVShow = () => {
+const Home = () => {
   const [TVshows, setTVshows] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
 
   const loadTVShows = () => {
-    getShows().then((res) => {
+    getShows().then((res: { data: any; }) => {
       setTVshows(res.data as any)
-      // setIsLoading(false)
     })
   };
 
@@ -53,10 +51,8 @@ const TVShow = () => {
       <Suspense fallback={<Loader />}>
         <Grid TVShows={TVshows}></Grid>
       </Suspense>
-      {/* {!isLoading ?
-        : <Loader/>} */}
     </>
   );
 }
 
-export default TVShow;
+export default Home;

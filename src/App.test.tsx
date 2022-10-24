@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import '@testing-library/jest-dom/extend-expect';
+import Home from './pages/Home';
 
 test('renders page title', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/REACT CHALLENGE - MOONGYS/i);
-  expect(linkElement).toBeInTheDocument();
+  render(<Home />);
+  const titleElement = screen.getByText('REACT CHALLENGE - MOONGY');
+  expect(titleElement).toBeInTheDocument();
 });

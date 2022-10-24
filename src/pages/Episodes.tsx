@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { getEpisodes, getMainShowInfo } from '../api/services/tvmazeAPI';
@@ -92,13 +92,13 @@ const Episodes = () => {
   );
 
   const loadMainInfo = () => {
-    getMainShowInfo(showSelected as string).then((res) => {
+    getMainShowInfo(showSelected as string).then((res: { data: SetStateAction<GeneralInfoTypes | undefined>; }) => {
       setShowInfo(res.data)
     })
   };
 
   const loadEpisodes = () => {
-    getEpisodes(showSelected as string).then((res) => {
+    getEpisodes(showSelected as string).then((res: { data: SetStateAction<never[]>; }) => {
       setEpisodes(res.data)
     })
   };
