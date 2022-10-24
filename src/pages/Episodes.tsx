@@ -1,13 +1,14 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import React from 'react';
+import { SetStateAction, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { getEpisodes, getMainShowInfo } from '../api/services/tvmazeAPI';
-import List from '../components/Lists/EpisodesList';
 import { setShowID } from '../store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import Button from '../components/Buttons/Button';
 import Loader from '../components/Loader/Loader';
+const List = React.lazy(() => import('../components/Lists/EpisodesList'));
 
 const Header = styled.div`
   background-color: #02182B;
@@ -84,7 +85,6 @@ const Title = styled.p`
 const Episodes = () => {
   const [showInfo, setShowInfo] = useState<GeneralInfoTypes>();
   const [episodes, setEpisodes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch()
 
   const showSelected: string = useSelector(
@@ -124,34 +124,35 @@ const Episodes = () => {
   useEffect(() => {
     loadMainInfo()
     loadEpisodes()
-    setIsLoading(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
-      {!isLoading ?
-        <>
-          <Header>
-            <img src={showInfo?.image.original} alt={showInfo?.name} />
-            <Article>
-              <Link to='/' onClick={() => dispatch(setShowID(''))}>
-                <Button>Back to TV Shows</Button>
-              </Link>
-              <TitleWrapper>
-                <Title>
-                  {showInfo?.name}
-                </Title>
+      <Header>
+        <img src={showInfo?.image.original} alt={showInfo?.name} />
+        <Article>
+          <Link to='/' onClick={() => dispatch(setShowID(''))}>
+            <Button>Back to TV Shows</Button>
+          </Link>
+          <TitleWrapper>
+            <Title>
+              {showInfo?.name}
+            </Title>
+            {showInfo ?
+              <>
                 {getGenres()}
                 <span>Released in {showInfo?.premiered.split('-')[0]}</span>
                 <span>Rating: {showInfo?.rating.average}</span>
-              </TitleWrapper>
-              <p>{showInfo?.summary.replace(/<[^>]*>?/gm, '')}</p>
-            </Article>
-          </Header>
-          <List episodes={episodes} seasonId={showSelected}></List>
-        </>
-        : <Loader />}
+              </>
+              : ''}
+          </TitleWrapper>
+          <p>{showInfo?.summary.replace(/<[^>]*>?/gm, '')}</p>
+        </Article>
+      </Header>
+      <Suspense fallback={<Loader />}>
+        <List episodes={episodes} seasonId={showSelected}></List>
+      </Suspense>
     </>
   );
 }

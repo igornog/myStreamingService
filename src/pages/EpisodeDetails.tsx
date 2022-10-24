@@ -1,12 +1,11 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import React from 'react';
+import { SetStateAction, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import { getEpisodeMainInfo } from '../api/services/tvmazeAPI';
-import { setShowID } from '../store/reducers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import Button from '../components/Buttons/Button';
 import Loader from '../components/Loader/Loader';
+const Article = React.lazy(() => import('../components/Article/Article'));
 
 const Wrapper = styled.div`
   background-color: #02182B;
@@ -28,15 +27,6 @@ const Wrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: 769px) {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
-
-`
-const Article = styled.article`
-  padding: 3rem 6rem;
   a {
     display: flex;
     justify-content: center;
@@ -59,32 +49,25 @@ const Article = styled.article`
   @media screen and (max-width: 769px) {
     padding: 0;
   }
+
+  @media screen and (max-width: 769px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
 `
-const Title = styled.p`
-  font-size: 2rem;
-  font-weight: bold;
-`
+
 const Episodes = () => {
   const [showInfo, setShowInfo] = useState<GeneralInfoTypes>();
-  const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch()
 
   const episodeSelectedId: string = useSelector(
     (state: RootState) => state.showSelected.episodeId
   );
 
-  const showSelectedName: string = useSelector(
-    (state: RootState) => state.showSelected.showName
-  );
-
-  const showSelectedId: string = useSelector(
-    (state: RootState) => state.showSelected.showId
-  );
-
   const loadMainInfo = () => {
     getEpisodeMainInfo(episodeSelectedId as string).then((res: { data: SetStateAction<GeneralInfoTypes | undefined>; }) => {
       setShowInfo(res.data)
-      setIsLoading(false)
     })
   };
 
@@ -94,20 +77,15 @@ const Episodes = () => {
   }, [])
 
   return (
-    <>
-      {!isLoading ?
-        <Wrapper>
-            <img src={showInfo?.image.original} alt={showInfo?.name} />
-          <Article>
-            <Title>{showInfo?.name}</Title>
-            <p>{showInfo?.summary.split((/<|>/))[2]}</p>
-            <Link to={`/${showSelectedName ? showSelectedName : localStorage.getItem('showName')}`} onClick={() => dispatch(setShowID(showSelectedId))}>
-              <Button>Back to all episodes</Button>
-            </Link>
-          </Article>
-        </Wrapper>
-        : <Loader />}
-    </>
+    <Suspense fallback={<Loader />}>
+      <Wrapper>
+        <img src={showInfo?.image?.original} alt={showInfo?.name} />
+        <Article
+          name={showInfo?.name}
+          summary={showInfo?.summary}
+        />
+      </Wrapper>
+    </Suspense>
   );
 }
 

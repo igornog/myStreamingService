@@ -11,6 +11,7 @@ interface PropsTypes {
 
 const ListWrapper = styled.div`
   background-color: #FFFFFC;
+  text-align: center;
 
   select {
     margin: 2rem 0 0;
@@ -38,7 +39,6 @@ const List = styled.ul`
 const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
   const [seasonSelected, setSeasonSelected] = useState(1);
   const [seasons, setSeasons] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const selectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = Number(event.target.value);
@@ -48,7 +48,6 @@ const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
   const loadSeasons = () => {
     getSeasons(props.seasonId).then((res: { data: SetStateAction<never[]>; }) => {
       setSeasons(res.data)
-      setIsLoading(false)
     })
   };
 
@@ -58,30 +57,26 @@ const EpisodesList: React.FC<PropsTypes> = (props: PropsTypes) => {
   }, [])
 
   return (
-    <>
-      {!isLoading ?
-        <ListWrapper>
-          <select onChange={selectChange}>
-            {seasons?.map((season: any) => {
-              return (
-                <option key={season.number} value={season.number}>Season {season.number}</option>
-              )
-            }
-            )}
-          </select>
-          <List>
-            {props?.episodes?.filter((episode: GeneralInfoTypes) => episode.season === seasonSelected).map((episode: GeneralInfoTypes) => {
-              return (
-                <Card
-                  key={episode.id}
-                  episodeDetails={episode}
-                ></Card>
-              )
-            })}
-          </List>
-        </ListWrapper> :
-        <Loader />}
-    </>
+    <ListWrapper>
+      <select onChange={selectChange}>
+        {seasons?.map((season: any) => {
+          return (
+            <option key={season.number} value={season.number}>Season {season.number}</option>
+          )
+        }
+        )}
+      </select>
+      <List>
+        {props?.episodes?.filter((episode: GeneralInfoTypes) => episode.season === seasonSelected).map((episode: GeneralInfoTypes) => {
+          return (
+            <Card
+              key={episode.id}
+              episodeDetails={episode}
+            ></Card>
+          )
+        })}
+      </List>
+    </ListWrapper>
   );
 }
 

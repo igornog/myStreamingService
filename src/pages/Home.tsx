@@ -1,8 +1,9 @@
+import React from 'react';
 import { useEffect, useState, Suspense } from 'react';
 import styled from 'styled-components'
 import { getShows } from '../api/services/tvmazeAPI';
-import Grid from '../components/Grids/TVShowsGrid';
 import Loader from '../components/Loader/Loader';
+const Grid = React.lazy(() => import('../components/Grids/TVShowsGrid'));
 
 const Header = styled.div`
   background-color: #02182B;
