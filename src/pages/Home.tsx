@@ -46,7 +46,7 @@ const Home = () => {
     <>
       <Header>
         <Title>
-          REACT CHALLENGE - MOONGY
+          My streaming service
         </Title>
       </Header>
       <Suspense fallback={<Loader />}>
